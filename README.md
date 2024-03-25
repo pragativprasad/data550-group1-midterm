@@ -6,7 +6,7 @@ Group 1's Midterm Project for DATA 550
 
 ## Objective
 
-In this project, we will use a logistic regression model to estimate the odds ratio that defines the effect of chronic conditions (diabetes, COPD, asthma, immune suppression, CVD, and obesity) on hospitalization and death of COVID-19 patients in Mexico. 
+In this project, we will estimate the effect of chronic conditions (specifically: diabetes, COPD, asthma, immune suppression, CVD, and obesity) on hospitalization and death of COVID-19 patients in Mexico. 
 
 Source: https://datos.gob.mx/busca/dataset/informacion-referente-a-casos-covid-19-en-mexico
 
@@ -26,7 +26,7 @@ Source: https://datos.gob.mx/busca/dataset/informacion-referente-a-casos-covid-1
 
 `code/01_data_cleaning.R`
 
-  - inputs raw data from `Raw_Data/` folder
+  - inputs raw data from `raw_data/` folder
   - Handle missing data
   - Set outcome variables to binary
   - Change dependent variables (chronic conditions) to either binary or categorical with reference groups 
