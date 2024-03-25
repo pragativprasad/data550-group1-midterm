@@ -26,7 +26,7 @@ Source: https://datos.gob.mx/busca/dataset/informacion-referente-a-casos-covid-1
 
 `code/01_data_cleaning.R`
 
-  - inputs raw data from `Raw_Data/` folder
+  - inputs raw data from `raw_data/` folder
   - Handle missing data
   - Set outcome variables to binary
   - Change dependent variables (chronic conditions) to either binary or categorical with reference groups 
