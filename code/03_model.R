@@ -23,6 +23,10 @@ model_2 <- glm(DATE_DIED_N ~ DIABETES_N + COPD_N + ASTHMA_N + INMSUPR_N + CARDIO
                family = "binomial") 
 summary(model_2)
 
+# Save models
+saveRDS(model_1, file = here::here("output/model_1.rds"))
+saveRDS(model_2, file = here::here("output/model_2.rds"))
+
 # Table Model 1 Results
 model_1_results <- tbl_regression(model_1, exponentiate = TRUE,
                                   label = list(DIABETES_N ~ "Diabetes", COPD_N ~ "COPD", ASTHMA_N ~ "Asthme",
