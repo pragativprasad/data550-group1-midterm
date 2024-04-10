@@ -17,5 +17,7 @@ report.html: code/05_run_report.R report.Rmd data descriptive regression visuali
 clean:
 	rm -f output/*.rds && rm -f report.html && rm -f output/*.png
 	
+.PHONY: install
 install: 
+	Rscript -e "renv::restore(prompt=FALSE)"
 	
