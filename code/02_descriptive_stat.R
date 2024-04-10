@@ -1,5 +1,5 @@
 here::i_am("code/02_descriptive_stat.R")
-data_clean<- readRDS("output/data_cleaned.rds")
+data_clean<- readRDS(here::here("output/data_cleaned.rds"))
 library(magrittr)
 library(tidyverse)
 library(ggplot2)
