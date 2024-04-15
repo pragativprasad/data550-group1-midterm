@@ -1,0 +1,87 @@
+---
+title: "COVID-19 In Mexico"
+author: "Pragati Prasad"
+date: "2024-04-15"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message=FALSE)
+```
+
+```{r}
+here::i_am(
+  "report.Rmd"
+)
+```
+
+In this project, we will estimate the effect of chronic conditions (specifically: diabetes, COPD, asthma, immune suppression, CVD, and obesity) on hospitalization and death of COVID-19 patients in Mexico. 
+
+# Descriptive Analysis
+
+## Tabular analysis
+
+Table 1
+
+```{r, table1}
+readRDS(
+  file = here::here("output/02_table_one.rds")
+)
+```
+
+Table of Comorbidities
+
+```{r, table2}
+readRDS(
+  file = here::here("output/02_table2.rds")
+)
+```
+## Graphical Analysis
+
+```{r, plot-data}
+#| fig.align = "center",
+#| out.width = "600px"
+knitr::include_graphics(
+  #! TO DO: add appropriate file path to read scatter plot
+  here::here("output/02_conditioncount.png")
+)
+```
+
+```{r}
+#| fig.align = "center",
+#| out.width = "600px"
+knitr::include_graphics(
+  #! TO DO: add appropriate file path to read scatter plot
+  here::here("output/02_heatmap.png")
+)
+```
+
+# Statistical Analysis
+
+Effect of chronic conditions (specifically: diabetes, COPD, asthma, immune suppression, CVD, and obesity) on hospitalization of COVID-19 patients in Mexico. 
+
+```{r}
+readRDS(
+  file = here::here("output/model_1_results.rds")
+)
+```
+
+```{r}
+readRDS(
+  file = here::here("output/model_1_effects.rds")
+)
+```
+
+Effect of chronic conditions (specifically: diabetes, COPD, asthma, immune suppression, CVD, and obesity) on death due to COVID-19 in Mexico. 
+
+```{r}
+readRDS(
+  file = here::here("output/model_2_results.rds")
+)
+```
+
+```{r}
+readRDS(
+  file = here::here("output/model_2_effects.rds")
+)
+```

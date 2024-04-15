@@ -1,6 +1,6 @@
 # set path and packages
 here::i_am('code/04_visualization.R')
-install.packages('ggfortify')
+# install.packages('ggfortify')
 library('ggfortify')
 
 # loading data & regression files
@@ -29,7 +29,7 @@ ggplot(df_predicted_observed, aes(x=Observed, y=Predicted))+
   labs(x='Observed', y='Predicted', title='Observed vs. Predicted Values')
 
 #plot marginal effects
-install.packages('effects')
+# install.packages('effects')
 library(effects)
 
 model_1_effects <- plot(allEffects(model_1))

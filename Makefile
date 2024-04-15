@@ -10,8 +10,8 @@ regression: code/03_model.R output/data_cleaned.rds regression
 visualize: code/04_visualization.R output/data_cleaned.rds output/model_1.rds output/model_2.rds data regression
 	Rscript code/04_visualization.R
 	
-report.html: code/05_run_report.R report.Rmd data descriptive regression visualize
-	Rscript 05_run_report.R
+report.html: code/05_render_report.R report.Rmd data descriptive regression visualize
+	Rscript code/05_render_report.R
 	
 .PHONY: clean
 clean:

@@ -2,10 +2,9 @@ here::i_am("code/02_descriptive_stat.R")
 data_clean<- readRDS(here::here("output/data_cleaned.rds"))
 library(magrittr)
 library(tidyverse)
-library(ggplot2)
+library(gtsummary)
 library(table1)
 
-table1(data_clean)
 # label data
 label(data_clean$DIABETES)       <- "Diabetes"
 label(data_clean$COPD)       <- "COPD"
@@ -14,13 +13,14 @@ label(data_clean$INMSUPR) <- "Immunosuppressed"
 label(data_clean$CARDIOVASCULAR) <- "CVD"
 label(data_clean$OBESITY) <- "Obese"
 label(data_clean$TOBACCO) <- "Tobacco User"
+# table1(data_clean)
 
 #create table 1
 
 table_one <-table1( ~ DIABETES + COPD + ASTHMA + INMSUPR + CARDIOVASCULAR + OBESITY + TOBACCO,
                     data = data_clean)
 table_one
-saveRDS(file = "output/02_table_one.rds")
+saveRDS(table_one, file = "output/02_table_one.rds")
 
 # establish chronic condition columns
 chronic_condition <-data_clean %>%
@@ -39,7 +39,7 @@ condition_counts <- chronic_condition %>%
 
 # Plot a bar plot
 figure1 <- ggplot(data = condition_counts,
-       aes(x = factor(num_chronic_conditions),y = percentage, fill = factor(num_chronic_conditions))) +
+                  aes(x = factor(num_chronic_conditions),y = percentage, fill = factor(num_chronic_conditions))) +
   geom_bar(stat = "identity", position = "dodge") +
   labs(title = "Percentage of Patients by Number of Chronic Conditions",
        x = "Number of Chronic Conditions",
@@ -61,25 +61,27 @@ chronic_condition_comorbid <-chronic_condition %>%
 table2 <-  tbl_summary(chronic_condition_comorbid,
                        include = everything(),
                        by = comorbid
-                       )%>%
-  add_p() %>% 
+)%>%
+  # add_p() %>% 
   modify_header(label = "Comorbid Chronic Condition by Condition") %>% 
   bold_labels()
 
-ggsave(filename = "output/02_table2.png", 
-       plot = table2, 
-       device = "png")
+# ggsave(filename = "output/02_table2.png", 
+#        plot = table2, 
+#        device = "png")
+
+saveRDS(table2, file = "output/02_table2.rds")
+
 
 #prep correlation for heat map
 correlation <- cor(chronic_condition, use = "pairwise.complete.obs")
 
+png("output/02_heatmap.png")
 # Plot heatmap
 heatmap <- heatmap(correlation,
-        col = colorRampPalette(c("blue", "white", "red"))(100),
-        symm = TRUE,
-        margins = c(5, 10),
-        main = "Correlation Heatmap of Chronic Conditions")
+                   col = colorRampPalette(c("blue", "white", "red"))(100),
+                   symm = TRUE,
+                   margins = c(5, 10),
+                   main = "Correlation Heatmap of Chronic Conditions")
+dev.off()
 
-ggsave(filename = "output/02_heatmap.png", 
-       plot = heatmap, 
-       device = "png")
